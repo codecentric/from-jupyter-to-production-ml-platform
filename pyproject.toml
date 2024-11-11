@@ -1,0 +1,45 @@
+[project]
+name = "from-jupyter-to-production-ml-platform"
+version = "0.1.0"
+description = "Example project for the creation of a machine learning platform with ZenML.This project creates a model to predict would survive the titanic disaster."
+authors = [
+    { name = "Nils Uhrberg", email = "nils.uhrberg@codecentric.de" }
+]
+dependencies = [
+    "mlflow>=2.17.1",
+    "scikit-learn>=1.5.2",
+    "pygit>=0.1",
+    "pip>=24.3.1",
+    "pygithub>=2.4.0",
+    "feast[postgres]>=0.41.3",
+    "python-dotenv>=1.0.1",
+    "pymysql>=1.1.1",
+    "fastparquet>=2024.5.0",
+    "label-studio-sdk>=1.0.7",
+    "s3fs>=2024.10.0",
+    "boto3>=1.35.16",
+    "pandas>=2.2.3",
+    "xgboost>=2.1.2",
+    "sqlalchemy>=2.0.36",
+    "zenml>=0.68.1",
+    "psycopg>=3.2.3",
+]
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pre-commit>=4.0.1",
+    "ruff>=0.7.2",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/titanicsurvivors"]

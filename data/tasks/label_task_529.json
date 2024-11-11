@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 530,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Hocking, Mr. Richard George",
+      "Sex": "male",
+      "Age": 23.0,
+      "SibSp": 2,
+      "Parch": 1,
+      "Ticket": "29104",
+      "Fare": 11.5,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 319,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Wick, Miss. Mary Natalie",
+      "Sex": "female",
+      "Age": 31.0,
+      "SibSp": 0,
+      "Parch": 2,
+      "Ticket": "36928",
+      "Fare": 164.8667,
+      "Cabin": "C7",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

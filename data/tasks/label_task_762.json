@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 763,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Barah, Mr. Hanna Assi",
+      "Sex": "male",
+      "Age": 20.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "2663",
+      "Fare": 7.2292,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

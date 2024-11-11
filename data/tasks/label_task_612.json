@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 613,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Murphy, Miss. Margaret Jane",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "367230",
+      "Fare": 15.5,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

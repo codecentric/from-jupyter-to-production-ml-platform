@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 363,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Barbara, Mrs. (Catherine David)",
+      "Sex": "female",
+      "Age": 45.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "2691",
+      "Fare": 14.4542,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

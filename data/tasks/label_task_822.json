@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 823,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Reuchlin, Jonkheer. John George",
+      "Sex": "male",
+      "Age": 38.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "19972",
+      "Fare": 0.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

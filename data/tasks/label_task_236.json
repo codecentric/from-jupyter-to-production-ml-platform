@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 237,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Hold, Mr. Stephen",
+      "Sex": "male",
+      "Age": 44.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "26707",
+      "Fare": 26.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

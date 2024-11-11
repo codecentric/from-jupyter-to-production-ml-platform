@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 283,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "de Pelsmaeker, Mr. Alfons",
+      "Sex": "male",
+      "Age": 16.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "345778",
+      "Fare": 9.5,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

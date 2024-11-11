@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 854,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Lines, Miss. Mary Conover",
+      "Sex": "female",
+      "Age": 16.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "PC 17592",
+      "Fare": 39.4,
+      "Cabin": "D28",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

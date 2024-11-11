@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 219,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Bazzani, Miss. Albina",
+      "Sex": "female",
+      "Age": 32.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "11813",
+      "Fare": 76.2917,
+      "Cabin": "D15",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

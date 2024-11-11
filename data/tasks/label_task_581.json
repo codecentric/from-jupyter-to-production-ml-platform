@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 582,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Thayer, Mrs. John Borland (Marian Longstreth Morris)",
+      "Sex": "female",
+      "Age": 39.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "17421",
+      "Fare": 110.8833,
+      "Cabin": "C68",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

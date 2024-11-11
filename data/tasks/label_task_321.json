@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 322,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Danoff, Mr. Yoto",
+      "Sex": "male",
+      "Age": 27.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "349219",
+      "Fare": 7.8958,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

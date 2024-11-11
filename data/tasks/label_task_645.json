@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 646,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Harper, Mr. Henry Sleeper",
+      "Sex": "male",
+      "Age": 48.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "PC 17572",
+      "Fare": 76.7292,
+      "Cabin": "D33",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

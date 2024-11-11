@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 1,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Braund, Mr. Owen Harris",
+      "Sex": "male",
+      "Age": 22.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "A/5 21171",
+      "Fare": 7.25,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

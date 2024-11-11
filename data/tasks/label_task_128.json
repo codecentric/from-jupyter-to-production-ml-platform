@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 129,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Peter, Miss. Anna",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "2668",
+      "Fare": 22.3583,
+      "Cabin": "F E69",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

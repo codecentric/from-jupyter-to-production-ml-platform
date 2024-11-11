@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 856,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Aks, Mrs. Sam (Leah Rosen)",
+      "Sex": "female",
+      "Age": 18.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "392091",
+      "Fare": 9.35,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

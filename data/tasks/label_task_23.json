@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 24,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Sloper, Mr. William Thompson",
+      "Sex": "male",
+      "Age": 28.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "113788",
+      "Fare": 35.5,
+      "Cabin": "A6",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

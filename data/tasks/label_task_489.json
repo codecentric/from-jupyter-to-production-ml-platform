@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 490,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Coutts, Master. Eden Leslie \"Neville\"",
+      "Sex": "male",
+      "Age": 9.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "C.A. 37671",
+      "Fare": 15.9,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

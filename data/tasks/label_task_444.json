@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 445,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Johannesen-Bratthammer, Mr. Bernt",
+      "Sex": "male",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "65306",
+      "Fare": 8.1125,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

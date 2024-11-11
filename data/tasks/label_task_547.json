@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 548,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Padro y Manent, Mr. Julian",
+      "Sex": "male",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SC/PARIS 2146",
+      "Fare": 13.8625,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

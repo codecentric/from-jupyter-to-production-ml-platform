@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 616,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Herman, Miss. Alice",
+      "Sex": "female",
+      "Age": 24.0,
+      "SibSp": 1,
+      "Parch": 2,
+      "Ticket": "220845",
+      "Fare": 65.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

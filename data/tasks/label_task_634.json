@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 635,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Skoog, Miss. Mabel",
+      "Sex": "female",
+      "Age": 9.0,
+      "SibSp": 3,
+      "Parch": 2,
+      "Ticket": "347088",
+      "Fare": 27.9,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

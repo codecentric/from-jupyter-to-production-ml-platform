@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 594,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Bourke, Miss. Mary",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 2,
+      "Ticket": "364848",
+      "Fare": 7.75,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

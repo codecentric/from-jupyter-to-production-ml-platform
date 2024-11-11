@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 157,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Gilnagh, Miss. Katherine \"Katie\"",
+      "Sex": "female",
+      "Age": 16.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "35851",
+      "Fare": 7.7333,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

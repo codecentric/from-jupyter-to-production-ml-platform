@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 170,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Ling, Mr. Lee",
+      "Sex": "male",
+      "Age": 28.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "1601",
+      "Fare": 56.4958,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

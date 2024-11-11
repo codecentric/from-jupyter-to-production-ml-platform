@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS titanic (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    age INTEGER
+);

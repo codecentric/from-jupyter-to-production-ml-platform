@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 45,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Devaney, Miss. Margaret Delia",
+      "Sex": "female",
+      "Age": 19.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "330958",
+      "Fare": 7.8792,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

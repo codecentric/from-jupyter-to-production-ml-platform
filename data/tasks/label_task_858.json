@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 859,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Baclini, Mrs. Solomon (Latifa Qurban)",
+      "Sex": "female",
+      "Age": 24.0,
+      "SibSp": 0,
+      "Parch": 3,
+      "Ticket": "2666",
+      "Fare": 19.2583,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

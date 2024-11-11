@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 538,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "LeRoy, Miss. Bertha",
+      "Sex": "female",
+      "Age": 30.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17761",
+      "Fare": 106.425,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

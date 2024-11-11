@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 21,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Fynney, Mr. Joseph J",
+      "Sex": "male",
+      "Age": 35.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "239865",
+      "Fare": 26.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

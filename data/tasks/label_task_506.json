@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 507,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Quick, Mrs. Frederick Charles (Jane Richards)",
+      "Sex": "female",
+      "Age": 33.0,
+      "SibSp": 0,
+      "Parch": 2,
+      "Ticket": "26360",
+      "Fare": 26.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

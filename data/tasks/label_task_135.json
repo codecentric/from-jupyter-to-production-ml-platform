@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 136,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Richard, Mr. Emile",
+      "Sex": "male",
+      "Age": 23.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SC/PARIS 2133",
+      "Fare": 15.0458,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

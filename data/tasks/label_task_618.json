@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 619,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Becker, Miss. Marion Louise",
+      "Sex": "female",
+      "Age": 4.0,
+      "SibSp": 2,
+      "Parch": 1,
+      "Ticket": "230136",
+      "Fare": 39.0,
+      "Cabin": "F4",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

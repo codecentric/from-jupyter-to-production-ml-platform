@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 226,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Berglund, Mr. Karl Ivar Sven",
+      "Sex": "male",
+      "Age": 22.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PP 4348",
+      "Fare": 9.35,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

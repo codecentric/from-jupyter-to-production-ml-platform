@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 523,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Lahoud, Mr. Sarkis",
+      "Sex": "male",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "2624",
+      "Fare": 7.225,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

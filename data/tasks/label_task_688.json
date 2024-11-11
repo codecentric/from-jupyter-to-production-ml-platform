@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 689,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Fischer, Mr. Eberhard Thelander",
+      "Sex": "male",
+      "Age": 18.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "350036",
+      "Fare": 7.7958,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

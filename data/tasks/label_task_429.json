@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 430,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Pickard, Mr. Berk (Berk Trembisky)",
+      "Sex": "male",
+      "Age": 32.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SOTON/O.Q. 392078",
+      "Fare": 8.05,
+      "Cabin": "E10",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

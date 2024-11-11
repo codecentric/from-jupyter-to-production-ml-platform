@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 748,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Sinkkonen, Miss. Anna",
+      "Sex": "female",
+      "Age": 30.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "250648",
+      "Fare": 13.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

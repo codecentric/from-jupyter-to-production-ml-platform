@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 50,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Arnold-Franchi, Mrs. Josef (Josefine Franchi)",
+      "Sex": "female",
+      "Age": 18.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "349237",
+      "Fare": 17.8,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

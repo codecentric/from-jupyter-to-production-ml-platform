@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 503,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "O'Sullivan, Miss. Bridget Mary",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "330909",
+      "Fare": 7.6292,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

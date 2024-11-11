@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 193,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Andersen-Jensen, Miss. Carla Christine Nielsine",
+      "Sex": "female",
+      "Age": 19.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "350046",
+      "Fare": 7.8542,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

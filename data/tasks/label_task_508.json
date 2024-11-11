@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 509,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Olsen, Mr. Henry Margido",
+      "Sex": "male",
+      "Age": 28.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "C 4001",
+      "Fare": 22.525,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

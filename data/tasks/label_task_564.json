@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 565,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Meanwell, Miss. (Marion Ogden)",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SOTON/O.Q. 392087",
+      "Fare": 8.05,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

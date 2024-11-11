@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 13,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Saundercock, Mr. William Henry",
+      "Sex": "male",
+      "Age": 20.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "A/5. 2151",
+      "Fare": 8.05,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

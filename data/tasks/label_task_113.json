@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 114,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Jussila, Miss. Katriina",
+      "Sex": "female",
+      "Age": 20.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "4136",
+      "Fare": 9.825,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}
