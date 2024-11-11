@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 276,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Andrews, Miss. Kornelia Theodosia",
+      "Sex": "female",
+      "Age": 63.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "13502",
+      "Fare": 77.9583,
+      "Cabin": "D7",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

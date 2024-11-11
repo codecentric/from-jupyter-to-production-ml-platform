@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 270,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Bissette, Miss. Amelia",
+      "Sex": "female",
+      "Age": 35.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17760",
+      "Fare": 135.6333,
+      "Cabin": "C99",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

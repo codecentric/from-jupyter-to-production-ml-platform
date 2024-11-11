@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 304,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Keane, Miss. Nora A",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "226593",
+      "Fare": 12.35,
+      "Cabin": "E101",
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

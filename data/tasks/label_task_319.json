@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 320,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Spedden, Mrs. Frederic Oakley (Margaretta Corning Stone)",
+      "Sex": "female",
+      "Age": 40.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "16966",
+      "Fare": 134.5,
+      "Cabin": "E34",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

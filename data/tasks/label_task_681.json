@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 682,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Hassab, Mr. Hammad",
+      "Sex": "male",
+      "Age": 27.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17572",
+      "Fare": 76.7292,
+      "Cabin": "D49",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

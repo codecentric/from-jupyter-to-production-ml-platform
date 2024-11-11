@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 671,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Brown, Mrs. Thomas William Solomon (Elizabeth Catherine Ford)",
+      "Sex": "female",
+      "Age": 40.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "29750",
+      "Fare": 39.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 499,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Allison, Mrs. Hudson J C (Bessie Waldo Daniels)",
+      "Sex": "female",
+      "Age": 25.0,
+      "SibSp": 1,
+      "Parch": 2,
+      "Ticket": "113781",
+      "Fare": 151.55,
+      "Cabin": "C22 C26",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

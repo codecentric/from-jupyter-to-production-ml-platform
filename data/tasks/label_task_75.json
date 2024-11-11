@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 76,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Moen, Mr. Sigurd Hansen",
+      "Sex": "male",
+      "Age": 25.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "348123",
+      "Fare": 7.65,
+      "Cabin": "F G73",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

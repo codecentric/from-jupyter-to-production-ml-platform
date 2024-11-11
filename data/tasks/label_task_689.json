@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 690,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Madill, Miss. Georgette Alexandra",
+      "Sex": "female",
+      "Age": 15.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "24160",
+      "Fare": 211.3375,
+      "Cabin": "B5",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

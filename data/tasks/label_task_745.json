@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 746,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Crosby, Capt. Edward Gifford",
+      "Sex": "male",
+      "Age": 70.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "WE/P 5735",
+      "Fare": 71.0,
+      "Cabin": "B22",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

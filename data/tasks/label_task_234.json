@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 235,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Leyson, Mr. Robert William Norman",
+      "Sex": "male",
+      "Age": 24.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "C.A. 29566",
+      "Fare": 10.5,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 366,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Adahl, Mr. Mauritz Nils Martin",
+      "Sex": "male",
+      "Age": 30.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "C 7076",
+      "Fare": 7.25,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

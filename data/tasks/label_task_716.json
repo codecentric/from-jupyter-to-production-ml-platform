@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 717,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Endres, Miss. Caroline Louise",
+      "Sex": "female",
+      "Age": 38.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17757",
+      "Fare": 227.525,
+      "Cabin": "C45",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

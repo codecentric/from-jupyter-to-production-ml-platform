@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 68,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Crease, Mr. Ernest James",
+      "Sex": "male",
+      "Age": 19.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "S.P. 3464",
+      "Fare": 8.1583,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

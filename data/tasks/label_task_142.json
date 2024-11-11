@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 143,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)",
+      "Sex": "female",
+      "Age": 24.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "STON/O2. 3101279",
+      "Fare": 15.85,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

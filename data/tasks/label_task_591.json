@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 592,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Stephenson, Mrs. Walter Bertram (Martha Eustis)",
+      "Sex": "female",
+      "Age": 52.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "36947",
+      "Fare": 78.2667,
+      "Cabin": "D20",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 474,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Jerwan, Mrs. Amin S (Marie Marthe Thuillard)",
+      "Sex": "female",
+      "Age": 23.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SC/AH Basle 541",
+      "Fare": 13.7917,
+      "Cabin": "D",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

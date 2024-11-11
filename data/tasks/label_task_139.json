@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 140,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Giglio, Mr. Victor",
+      "Sex": "male",
+      "Age": 24.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17593",
+      "Fare": 79.2,
+      "Cabin": "B86",
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

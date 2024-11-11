@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 494,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Artagaveytia, Mr. Ramon",
+      "Sex": "male",
+      "Age": 71.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "PC 17609",
+      "Fare": 49.5042,
+      "Cabin": -1,
+      "Embarked": "C"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

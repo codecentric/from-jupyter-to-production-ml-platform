@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 418,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Silven, Miss. Lyyli Karoliina",
+      "Sex": "female",
+      "Age": 18.0,
+      "SibSp": 0,
+      "Parch": 2,
+      "Ticket": "250652",
+      "Fare": 13.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

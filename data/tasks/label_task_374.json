@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 375,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Palsson, Miss. Stina Viola",
+      "Sex": "female",
+      "Age": 3.0,
+      "SibSp": 3,
+      "Parch": 1,
+      "Ticket": "349909",
+      "Fare": 21.075,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

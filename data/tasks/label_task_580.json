@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 581,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Christy, Miss. Julie Rachel",
+      "Sex": "female",
+      "Age": 25.0,
+      "SibSp": 1,
+      "Parch": 1,
+      "Ticket": "237789",
+      "Fare": 30.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

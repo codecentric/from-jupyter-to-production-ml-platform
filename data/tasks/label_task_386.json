@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 387,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Goodwin, Master. Sidney Leonard",
+      "Sex": "male",
+      "Age": 1.0,
+      "SibSp": 5,
+      "Parch": 2,
+      "Ticket": "CA 2144",
+      "Fare": 46.9,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 161,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Cribb, Mr. John Hatfield",
+      "Sex": "male",
+      "Age": 44.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "371362",
+      "Fare": 16.1,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

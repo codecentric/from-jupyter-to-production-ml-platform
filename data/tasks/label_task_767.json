@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 768,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Mangan, Miss. Mary",
+      "Sex": "female",
+      "Age": 30.5,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "364850",
+      "Fare": 7.75,
+      "Cabin": -1,
+      "Embarked": "Q"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

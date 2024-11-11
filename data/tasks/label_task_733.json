@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 734,
+    "p_data": {
+      "Pclass": 2,
+      "Name": "Berriman, Mr. William John",
+      "Sex": "male",
+      "Age": 23.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "28425",
+      "Fare": 13.0,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

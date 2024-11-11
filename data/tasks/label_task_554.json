@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 555,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Ohman, Miss. Velin",
+      "Sex": "female",
+      "Age": 22.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "347085",
+      "Fare": 7.775,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

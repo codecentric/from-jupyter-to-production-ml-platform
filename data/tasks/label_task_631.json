@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 632,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Lundahl, Mr. Johan Svensson",
+      "Sex": "male",
+      "Age": 51.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "347743",
+      "Fare": 7.0542,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

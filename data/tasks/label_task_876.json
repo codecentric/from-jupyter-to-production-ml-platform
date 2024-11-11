@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 877,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Gustafsson, Mr. Alfred Ossian",
+      "Sex": "male",
+      "Age": 20.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "7534",
+      "Fare": 9.8458,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

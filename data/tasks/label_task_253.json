@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 254,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Lobb, Mr. William Arthur",
+      "Sex": "male",
+      "Age": 30.0,
+      "SibSp": 1,
+      "Parch": 0,
+      "Ticket": "A/5. 3336",
+      "Fare": 16.1,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

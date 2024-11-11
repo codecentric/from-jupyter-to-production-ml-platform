@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 167,
+    "p_data": {
+      "Pclass": 1,
+      "Name": "Chibnall, Mrs. (Edith Martha Bowerman)",
+      "Sex": "female",
+      "Age": -1.0,
+      "SibSp": 0,
+      "Parch": 1,
+      "Ticket": "113505",
+      "Fare": 55.0,
+      "Cabin": "E33",
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Survived"
+          }
+        }
+      ]
+    }
+  ]
+}

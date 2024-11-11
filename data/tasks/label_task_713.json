@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 714,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Larsson, Mr. August Viktor",
+      "Sex": "male",
+      "Age": 29.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "7545",
+      "Fare": 9.4833,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}

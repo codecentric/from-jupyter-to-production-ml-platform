@@ -1,0 +1,34 @@
+{
+  "predictions": [],
+  "data": {
+    "ID": 132,
+    "p_data": {
+      "Pclass": 3,
+      "Name": "Coelho, Mr. Domingos Fernandeo",
+      "Sex": "male",
+      "Age": 20.0,
+      "SibSp": 0,
+      "Parch": 0,
+      "Ticket": "SOTON/O.Q. 3101307",
+      "Fare": 7.05,
+      "Cabin": -1,
+      "Embarked": "S"
+    }
+  },
+  "annotations": [
+    {
+      "result": [
+        {
+          "from_name": "sentiment_class",
+          "to_name": "message",
+          "type": "choices",
+          "readonly": false,
+          "hidden": false,
+          "value": {
+            "choices": "Died"
+          }
+        }
+      ]
+    }
+  ]
+}
