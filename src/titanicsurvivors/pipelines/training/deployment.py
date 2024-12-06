@@ -1,21 +1,19 @@
-from typing import Annotated
+from typing import List
 
 import bentoml
-from bentoml.validators import DType, Shape
 import numpy as np
+import pandas as pd
 
 
 @bentoml.service(
-    name="TitanicRFService",
+    name="TitanicRfService",
 )
-class TitanicRFService:
+class TitanicRfService:
     def __init__(self):
         # load model
         self.model = bentoml.sklearn.load_model("titanic_random_forest")
 
     @bentoml.api()
-    async def predict_ndarray(
-        self, inp: Annotated[np.ndarray, DType("float32"), Shape((1, 25))]
-    ) -> np.ndarray:
-        output_tensor = await self.model.predict(inp)
-        return output_tensor
+    async def predict(self, inputs: List[dict]) -> List[str]:
+        output_tensor = self.model.predict(pd.DataFrame(inputs))
+        return np.where(output_tensor == 1, "Survived", "Died").tolist()

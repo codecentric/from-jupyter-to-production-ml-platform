@@ -14,9 +14,9 @@ a2wsgi==1.10.7
     # via bentoml
 aiobotocore==2.15.2
     # via s3fs
-aiohappyeyeballs==2.4.3
+aiohappyeyeballs==2.4.4
     # via aiohttp
-aiohttp==3.10.10
+aiohttp==3.11.10
     # via aiobotocore
     # via bentoml
     # via s3fs
@@ -31,7 +31,7 @@ alembic==1.8.1
     # via zenml
 annotated-types==0.7.0
     # via pydantic
-anyio==4.6.2.post1
+anyio==4.7.0
     # via httpx
     # via httpx-ws
     # via starlette
@@ -39,9 +39,11 @@ anyio==4.6.2.post1
 appdirs==1.4.4
     # via fs
     # via label-studio-sdk
+argcomplete==3.5.1
+    # via datamodel-code-generator
 asgiref==3.8.1
     # via opentelemetry-instrumentation-asgi
-asttokens==2.4.1
+asttokens==3.0.0
     # via stack-data
 attrs==24.2.0
     # via aiohttp
@@ -52,11 +54,13 @@ attrs==24.2.0
 bcrypt==4.0.1
     # via passlib
     # via zenml
-bentoml==1.3.11
+bentoml==1.3.15
     # via from-jupyter-to-production-ml-platform
-bigtree==0.22.1
+bigtree==0.22.3
     # via feast
-blinker==1.8.2
+black==24.10.0
+    # via datamodel-code-generator
+blinker==1.9.0
     # via flask
 boto3==1.35.36
     # via from-jupyter-to-production-ml-platform
@@ -84,6 +88,7 @@ circus==0.18.0
     # via bentoml
 click==8.1.3
     # via bentoml
+    # via black
     # via click-option-group
     # via dask
     # via feast
@@ -103,11 +108,11 @@ colorama==0.4.6
     # via feast
 comm==0.2.2
     # via ipywidgets
-contourpy==1.3.0
+contourpy==1.3.1
     # via matplotlib
 cramjam==2.9.0
     # via fastparquet
-cryptography==43.0.3
+cryptography==44.0.0
     # via pyjwt
 cycler==0.12.1
     # via matplotlib
@@ -116,13 +121,15 @@ dask==2024.8.0
     # via feast
 dask-expr==1.1.10
     # via dask
-databricks-sdk==0.36.0
+databricks-sdk==0.38.0
     # via mlflow-skinny
+datamodel-code-generator==0.26.1
+    # via label-studio-sdk
 decorator==5.1.1
     # via ipython
 deepmerge==2.0
     # via bentoml
-deprecated==1.2.14
+deprecated==1.2.15
     # via opentelemetry-api
     # via pygithub
 dill==0.3.9
@@ -131,22 +138,28 @@ distlib==0.3.9
     # via virtualenv
 distro==1.9.0
     # via zenml
+dnspython==2.7.0
+    # via email-validator
 docker==7.1.0
     # via mlflow
     # via zenml
+email-validator==2.2.0
+    # via pydantic
 executing==2.1.0
     # via stack-data
-fastapi==0.115.4
+faker==33.1.0
+    # via jsf
+fastapi==0.115.6
     # via feast
-fastparquet==2024.5.0
+fastparquet==2024.11.0
     # via from-jupyter-to-production-ml-platform
 feast==0.41.3
     # via from-jupyter-to-production-ml-platform
 filelock==3.16.1
     # via virtualenv
-flask==3.0.3
+flask==3.1.0
     # via mlflow
-fonttools==4.54.1
+fonttools==4.55.2
     # via matplotlib
 frozenlist==1.5.0
     # via aiohttp
@@ -157,6 +170,8 @@ fsspec==2024.10.0
     # via dask
     # via fastparquet
     # via s3fs
+genson==1.3.0
+    # via datamodel-code-generator
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
@@ -164,7 +179,7 @@ gitpython==3.1.43
     # via zenml
 google-auth==2.36.0
     # via databricks-sdk
-graphene==3.4.1
+graphene==3.4.3
     # via mlflow
 graphql-core==3.2.5
     # via graphene
@@ -181,21 +196,22 @@ h11==0.14.0
     # via httpcore
     # via uvicorn
     # via wsproto
-httpcore==1.0.6
+httpcore==1.0.7
     # via httpx
     # via httpx-ws
 httptools==0.6.4
     # via uvicorn
-httpx==0.27.2
+httpx==0.28.0
     # via bentoml
     # via httpx-ws
     # via label-studio-sdk
 httpx-ws==0.6.2
     # via bentoml
-identify==2.6.1
+identify==2.6.3
     # via pre-commit
 idna==3.10
     # via anyio
+    # via email-validator
     # via httpx
     # via requests
     # via yarl
@@ -204,18 +220,23 @@ ijson==3.3.0
 importlib-metadata==6.11.0
     # via mlflow-skinny
     # via opentelemetry-api
+inflect==5.6.2
+    # via datamodel-code-generator
 inflection==0.5.1
     # via bentoml
 ipython==8.18.0
     # via ipywidgets
 ipywidgets==8.1.5
     # via rich
+isort==5.13.2
+    # via datamodel-code-generator
 itsdangerous==2.2.0
     # via flask
-jedi==0.19.1
+jedi==0.19.2
     # via ipython
 jinja2==3.1.4
     # via bentoml
+    # via datamodel-code-generator
     # via feast
     # via flask
     # via mlflow
@@ -225,8 +246,11 @@ jmespath==1.0.1
 joblib==1.4.2
     # via nltk
     # via scikit-learn
+jsf==0.11.2
+    # via label-studio-sdk
 jsonschema==4.23.0
     # via feast
+    # via jsf
     # via label-studio-sdk
 jsonschema-specifications==2024.10.1
     # via jsonschema
@@ -234,13 +258,13 @@ jupyterlab-widgets==3.0.13
     # via ipywidgets
 kiwisolver==1.4.7
     # via matplotlib
-label-studio-sdk==1.0.7
+label-studio-sdk==1.0.8
     # via from-jupyter-to-production-ml-platform
 locket==1.0.0
     # via partd
 lxml==5.3.0
     # via label-studio-sdk
-mako==1.3.6
+mako==1.3.7
     # via alembic
 markdown==3.7
     # via mlflow
@@ -250,15 +274,15 @@ markupsafe==3.0.2
     # via jinja2
     # via mako
     # via werkzeug
-matplotlib==3.9.2
+matplotlib==3.9.3
     # via mlflow
 matplotlib-inline==0.1.7
     # via ipython
 mdurl==0.1.2
     # via markdown-it-py
-mlflow==2.17.2
+mlflow==2.18.0
     # via from-jupyter-to-production-ml-platform
-mlflow-skinny==2.17.2
+mlflow-skinny==2.18.0
     # via mlflow
 mmh3==5.0.1
     # via feast
@@ -268,6 +292,7 @@ multidict==6.1.0
 mypy==1.13.0
     # via sqlalchemy
 mypy-extensions==1.0.0
+    # via black
     # via mypy
 nltk==3.9.1
     # via label-studio-sdk
@@ -283,7 +308,6 @@ numpy==1.26.4
     # via matplotlib
     # via mlflow
     # via pandas
-    # via pyarrow
     # via scikit-learn
     # via scipy
     # via xgboost
@@ -318,7 +342,9 @@ opentelemetry-util-http==0.41b0
     # via opentelemetry-instrumentation-asgi
 packaging==24.2
     # via bentoml
+    # via black
     # via dask
+    # via datamodel-code-generator
     # via fastparquet
     # via gunicorn
     # via matplotlib
@@ -341,6 +367,7 @@ passlib==1.7.4
     # via zenml
 pathspec==0.12.1
     # via bentoml
+    # via black
 pexpect==4.9.0
     # via ipython
 pillow==11.0.0
@@ -351,15 +378,17 @@ pip==24.3.1
 pip-requirements-parser==32.0.1
     # via bentoml
 platformdirs==4.3.6
+    # via black
     # via virtualenv
 pre-commit==4.0.1
-prometheus-client==0.21.0
+prometheus-client==0.21.1
     # via bentoml
     # via feast
 prompt-toolkit==3.0.36
     # via ipython
     # via questionary
-propcache==0.2.0
+propcache==0.2.1
+    # via aiohttp
     # via yarl
 protobuf==4.25.5
     # via feast
@@ -374,13 +403,13 @@ psycopg==3.2.3
     # via from-jupyter-to-production-ml-platform
 psycopg-binary==3.2.3
     # via psycopg
-psycopg-pool==3.2.3
+psycopg-pool==3.2.4
     # via psycopg
 ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
-pyarrow==17.0.0
+pyarrow==18.1.0
     # via dask-expr
     # via feast
     # via mlflow
@@ -393,8 +422,10 @@ pycparser==2.22
     # via cffi
 pydantic==2.8.2
     # via bentoml
+    # via datamodel-code-generator
     # via fastapi
     # via feast
+    # via jsf
     # via label-studio-sdk
     # via pydantic-settings
     # via sqlmodel
@@ -411,7 +442,7 @@ pygments==2.18.0
     # via feast
     # via ipython
     # via rich
-pyjwt==2.9.0
+pyjwt==2.10.1
     # via feast
     # via pygithub
 pymysql==1.1.1
@@ -425,23 +456,26 @@ pyparsing==3.2.0
 python-dateutil==2.9.0.post0
     # via bentoml
     # via botocore
+    # via faker
     # via graphene
     # via matplotlib
     # via pandas
     # via zenml
 python-dotenv==1.0.1
+    # via bentoml
     # via from-jupyter-to-production-ml-platform
     # via pydantic-settings
     # via uvicorn
 python-json-logger==2.0.7
     # via bentoml
-python-multipart==0.0.17
+python-multipart==0.0.19
     # via bentoml
 pytz==2024.2
     # via pandas
 pyyaml==6.0.2
     # via bentoml
     # via dask
+    # via datamodel-code-generator
     # via feast
     # via mlflow-skinny
     # via pre-commit
@@ -464,20 +498,23 @@ requests==2.32.3
     # via mlflow-skinny
     # via pygithub
     # via requests-mock
+    # via smart-open
 requests-mock==1.12.1
     # via label-studio-sdk
 rich==13.9.4
     # via bentoml
     # via zenml
-rpds-py==0.21.0
+rpds-py==0.22.3
     # via jsonschema
     # via referencing
 rsa==4.9
     # via google-auth
-ruff==0.7.3
+rstr==3.2.2
+    # via jsf
+ruff==0.8.2
 s3fs==2024.10.0
     # via from-jupyter-to-production-ml-platform
-s3transfer==0.10.3
+s3transfer==0.10.4
     # via boto3
 schema==0.7.7
     # via bentoml
@@ -488,21 +525,21 @@ scipy==1.14.1
     # via mlflow
     # via scikit-learn
     # via xgboost
-setuptools==75.3.0
+setuptools==75.6.0
     # via fs
     # via opentelemetry-instrumentation
     # via zenml
 simple-di==0.1.5
     # via bentoml
-six==1.16.0
-    # via asttokens
+six==1.17.0
     # via fs
     # via python-dateutil
+smart-open==7.0.5
+    # via jsf
 smmap==5.0.1
     # via gitdb
 sniffio==1.3.1
     # via anyio
-    # via httpx
 sqlalchemy==2.0.36
     # via alembic
     # via feast
@@ -515,11 +552,11 @@ sqlalchemy-utils==0.41.2
     # via zenml
 sqlmodel==0.0.18
     # via zenml
-sqlparse==0.5.1
+sqlparse==0.5.2
     # via mlflow-skinny
 stack-data==0.6.3
     # via ipython
-starlette==0.41.2
+starlette==0.41.3
     # via bentoml
     # via fastapi
 tabulate==0.9.0
@@ -535,9 +572,9 @@ tomli-w==1.1.0
 toolz==1.0.0
     # via dask
     # via partd
-tornado==6.4.1
+tornado==6.4.2
     # via circus
-tqdm==4.67.0
+tqdm==4.67.1
     # via feast
     # via nltk
 traitlets==5.14.3
@@ -549,8 +586,11 @@ typeguard==4.4.1
     # via feast
 typing-extensions==4.12.2
     # via aiosqlite
+    # via anyio
+    # via faker
     # via fastapi
     # via graphene
+    # via jsf
     # via label-studio-sdk
     # via mypy
     # via opentelemetry-sdk
@@ -570,9 +610,9 @@ urllib3==2.2.3
     # via docker
     # via pygithub
     # via requests
-uv==0.5.1
+uv==0.5.6
     # via bentoml
-uvicorn==0.32.0
+uvicorn==0.32.1
     # via bentoml
     # via feast
     # via uvicorn-worker
@@ -580,33 +620,34 @@ uvicorn-worker==0.2.0
     # via feast
 uvloop==0.21.0
     # via uvicorn
-virtualenv==20.27.1
+virtualenv==20.28.0
     # via pre-commit
-watchfiles==0.24.0
+watchfiles==1.0.0
     # via bentoml
     # via uvicorn
 wcwidth==0.2.13
     # via prompt-toolkit
-websockets==13.1
+websockets==14.1
     # via uvicorn
 werkzeug==3.1.3
     # via flask
 widgetsnbextension==4.0.13
     # via ipywidgets
-wrapt==1.16.0
+wrapt==1.17.0
     # via aiobotocore
     # via deprecated
     # via opentelemetry-instrumentation
     # via opentelemetry-instrumentation-aiohttp-client
+    # via smart-open
 wsproto==1.2.0
     # via httpx-ws
-xgboost==2.1.2
+xgboost==2.1.3
     # via from-jupyter-to-production-ml-platform
 xmljson==0.2.1
     # via label-studio-sdk
-yarl==1.17.1
+yarl==1.18.3
     # via aiohttp
-zenml==0.68.1
+zenml==0.71.0
     # via from-jupyter-to-production-ml-platform
-zipp==3.20.2
+zipp==3.21.0
     # via importlib-metadata

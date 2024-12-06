@@ -7,6 +7,10 @@ from titanicsurvivors.steps.featurestore import (
 
 load_dotenv()
 
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 
 @pipeline()
 def data_from_feature_store():

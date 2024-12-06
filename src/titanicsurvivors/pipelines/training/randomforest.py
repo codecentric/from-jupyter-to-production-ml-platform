@@ -1,4 +1,5 @@
 from zenml import pipeline
+import zenml
 from zenml.client import Client
 
 from titanicsurvivors.models import titanic_random_forest
@@ -7,14 +8,11 @@ from titanicsurvivors.steps.training import train_random_forest
 from zenml.integrations.mlflow.flavors.mlflow_experiment_tracker_flavor import (
     MLFlowExperimentTrackerSettings,
 )
-from dotenv import load_dotenv
-
 from zenml.integrations.bentoml.steps import (
     bento_builder_step,
     bentoml_model_deployer_step,
 )
-import zenml
-
+from dotenv import load_dotenv
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -46,33 +44,34 @@ def train():
         train_input=train_input,
         train_target=train_target,
     )
+    score_random_forest(
+        test_input=test_input, test_target=test_target, random_forest=random_forest
+    )
+
     bento = bento_builder_step(
         model=random_forest,
-        model_name=titanic_random_forest.name,  # Name of the model
-        model_type="sklearn",  # Type of the model (pytorch, tensorflow, sklearn, xgboost..)
-        service="deployment:TitanicRFService",  # Path to the service file within zenml repo
-        labels={  # Labels to be added to the bento bundle
+        model_name=titanic_random_forest.name,
+        model_type="sklearn",
+        service="deployment:TitanicRfService",
+        labels={
             "framework": "sklearn",
             "dataset": "titanic",
             "zenml_version": zenml.__version__,
         },
-        exclude=["data"],  # Exclude files from the bento bundle
+        exclude=["data"],
         python={
-            "packages": ["zenml", "scikit-learn"],
-        },  # Python package requirements of the model
+            "packages": ["zenml", "scikit-learn", "pandas", "numpy"],
+        },
     )
 
-    _ = bentoml_model_deployer_step(
+    bentoml_model_deployer_step(
         bento=bento,
-        model_name=titanic_random_forest.name,
-        port=3000,  # Name of the model
         deployment_type="container",
+        model_name=titanic_random_forest.name,
+        port=3000,
         image="titanicsurvivors/rfclassifier",
         image_tag=titanic_random_forest.version,
         platform="linux/amd64",
-    )
-    score_random_forest(
-        test_input=test_input, test_target=test_target, random_forest=random_forest
     )
 
 

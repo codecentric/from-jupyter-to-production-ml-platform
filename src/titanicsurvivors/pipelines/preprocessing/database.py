@@ -4,7 +4,9 @@ from zenml.client import Client
 from titanicsurvivors.steps.database import insert_data_into_database
 
 from dotenv import load_dotenv
+import warnings
 
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 load_dotenv()
 
 

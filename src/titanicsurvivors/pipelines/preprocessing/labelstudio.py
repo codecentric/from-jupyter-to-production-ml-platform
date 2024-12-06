@@ -3,6 +3,9 @@ from zenml import pipeline
 from titanicsurvivors.steps.datacleaning import handle_missing_values
 from titanicsurvivors.steps.features import add_features
 from titanicsurvivors.steps.labelstudio import fetch_raw_titanic_data
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 @pipeline(name="Load and prepare dataset from LabelStudio")

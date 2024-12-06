@@ -4,8 +4,8 @@ include .env
 zenml-create-service-account:
 	zenml service-account create nils
 
-zenml-connect:
-	zenml connect --url http://localhost:8080 --api-key ${ZENML_API_KEY}
+zenml-login:
+	zenml login http://localhost:8080 --api-key
 
 zenml-create-artifact-store-minio:
 	zenml integration install -y s3

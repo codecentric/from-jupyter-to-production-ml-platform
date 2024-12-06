@@ -4,13 +4,7 @@ from typing import Annotated
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV
-from zenml import (
-    step,
-    ArtifactConfig,
-    log_artifact_metadata,
-    get_step_context,
-    log_model_metadata,
-)
+from zenml import step, ArtifactConfig, get_step_context, log_metadata
 from zenml.integrations.sklearn.materializers import SklearnMaterializer
 from zenml.client import Client
 
@@ -32,12 +26,13 @@ def train_random_forest(
     train_input: pd.DataFrame,
     train_target: pd.Series,
 ) -> Annotated[
-    RandomForestClassifier, ArtifactConfig(name="random_forest", is_model_artifact=True)
+    RandomForestClassifier,
+    ArtifactConfig(name="random_forest", artifact_type="ModelArtifact"),
 ]:
     mlflow.sklearn.autolog(log_models=False)
     param_dist = {
-        "n_estimators": sample(range(50, 500), 5),
-        "max_depth": sample(range(1, 20), 5),
+        "n_estimators": sample(range(50, 100), 5),
+        "max_depth": sample(range(1, 10), 5),
         "bootstrap": [True, False],
     }
     random_forest = RandomForestClassifier()
@@ -52,29 +47,26 @@ def train_random_forest(
         best_random_forest.feature_importances_, index=train_input.columns
     ).sort_values(ascending=False)
 
-    log_artifact_metadata(
-        artifact_name="random_forest",
-        metadata={"Best params": rand_search.best_params_},
-    )
-
-    log_model_metadata(
+    log_metadata(
         model_name=model.name,
-        metadata={"feature_importance": feature_importance.to_dict()},
+        model_version=model.version,
+        metadata={
+            "feature_importance": feature_importance.to_dict(),
+            "Best params": rand_search.best_params_,
+        },
     )
     mlflow.sklearn.log_model(random_forest, artifact_path=model.name)
 
     return best_random_forest
 
 
-@step(
-    model=titanic_xgboost,
-    experiment_tracker="mlflow",
-)
+@step(model=titanic_xgboost, experiment_tracker="mlflow", enable_cache=False)
 def train_xgboost(
     train_input: pd.DataFrame,
     train_target: pd.Series,
 ) -> Annotated[
-    XGBClassifier, ArtifactConfig(name="xgboost_classifier", is_model_artifact=True)
+    XGBClassifier,
+    ArtifactConfig(name="xgboost_classifier", artifact_type="ModelArtifact"),
 ]:
     mlflow.xgboost.autolog(log_models=False)
 
@@ -101,14 +93,13 @@ def train_xgboost(
         best_xgb_classifier.feature_importances_, index=train_input.columns
     ).sort_values(ascending=False)
 
-    log_artifact_metadata(
-        artifact_name="xgboost_classifier",
-        metadata={"Best params": rand_search.best_params_},
-    )
-
-    log_model_metadata(
+    log_metadata(
         model_name=model.name,
-        metadata={"feature_importance": feature_importance.to_dict()},
+        model_version=model.version,
+        metadata={
+            "feature_importance": feature_importance.to_dict(),
+            "Best params": rand_search.best_params_,
+        },
     )
     mlflow.xgboost.log_model(best_xgb_classifier, artifact_path=model.name)
 

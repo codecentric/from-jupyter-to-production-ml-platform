@@ -4,11 +4,14 @@ from zenml import pipeline
 from zenml.client import Client
 
 from titanicsurvivors.steps.datapreparation import feature_transformation, split_data
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 @pipeline
 def create_subsets_from_artifact(
-    data_artifact_name: str = "data_w_features_label_studio",
+    data_artifact_name: str = "data_w_features_feature_store",
 ):
     client = Client()
     data_w_features = client.get_artifact_version(name_id_or_prefix=data_artifact_name)
