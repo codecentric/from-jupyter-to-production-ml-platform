@@ -64,7 +64,7 @@ zenml-add-model-deployer:
 	zenml model-deployer register bentoml_deployer --flavor=bentoml
 
 zenml-register-stack:
-	zenml stack register docker-compose -o default -a minio_store -e mlflow -r mlflow_model_registry -an label_studio -f feast_store -c local-docker-registry -d bentoml_deployer
+	zenml stack register docker-compose -o docker -a minio_store -e mlflow -r mlflow_model_registry -an label_studio -f feast_store -c local-docker-registry -d bentoml_deployer -i local-image-builder
 
 zenml-create-components:
 	zenml integration install -y s3
@@ -85,11 +85,6 @@ zenml-create-components:
 	zenml service-connector register local-docker-registry-service-connector --type docker --username=${DOCKER_REGISTRY_USER} --password=${DOCKER_REGISTRY_PASSWORD} --registry=localhost:5000
 
 	zenml container-registry connect local-docker-registry --connector=local-docker-registry-service-connector
-
-	zenml orchestrator register docker \
-    --flavor=local_docker
-
-	zenml image-builder register local-image-builder --flavor=local
 
 	zenml experiment-tracker register mlflow \
     --flavor=mlflow \

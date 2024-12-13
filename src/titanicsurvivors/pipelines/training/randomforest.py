@@ -1,5 +1,4 @@
 from zenml import pipeline
-import zenml
 from zenml.client import Client
 
 from titanicsurvivors.models import titanic_random_forest
@@ -7,10 +6,6 @@ from titanicsurvivors.steps.analysis import score_random_forest
 from titanicsurvivors.steps.training import train_random_forest
 from zenml.integrations.mlflow.flavors.mlflow_experiment_tracker_flavor import (
     MLFlowExperimentTrackerSettings,
-)
-from zenml.integrations.bentoml.steps import (
-    bento_builder_step,
-    bentoml_model_deployer_step,
 )
 from dotenv import load_dotenv
 import warnings
@@ -46,32 +41,6 @@ def train():
     )
     score_random_forest(
         test_input=test_input, test_target=test_target, random_forest=random_forest
-    )
-
-    bento = bento_builder_step(
-        model=random_forest,
-        model_name=titanic_random_forest.name,
-        model_type="sklearn",
-        service="deployment:TitanicRfService",
-        labels={
-            "framework": "sklearn",
-            "dataset": "titanic",
-            "zenml_version": zenml.__version__,
-        },
-        exclude=["data"],
-        python={
-            "packages": ["zenml", "scikit-learn", "pandas", "numpy"],
-        },
-    )
-
-    bentoml_model_deployer_step(
-        bento=bento,
-        deployment_type="container",
-        model_name=titanic_random_forest.name,
-        port=3000,
-        image="titanicsurvivors/rfclassifier",
-        image_tag=titanic_random_forest.version,
-        platform="linux/amd64",
     )
 
 
