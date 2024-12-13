@@ -190,9 +190,13 @@ LABEL_STUDIO_ACCESS_KEY=<your_access_token>
 ### 🧩 Registering ZenML Components
 
 In this section, we will register the necessary components for our ZenML pipeline. 
-Each command below serves to configure different aspects of our ML workflow.
-
-
+For faster implementation and correct use of the environment variables, there is the following 
+Make command, which creates all the required components.
+```bash
+make zenml-create-components
+```
+If you are interested in adding the components by your own, the individual commands are listed 
+and described below.
 
 #### **1. Registering the Artifact Store**
 We first register an artifact store in MinIO to handle the storage of our ML artifacts and outputs 
@@ -445,7 +449,7 @@ With the new subsets prepared, we can retrain the Random Forest model:
 python src/titanicsurvivors/pipelines/training/randomforest.py
 ```
 
-### 🚀 Deploying the Random Forest Model as a Bento Service
+### 🚢 Deploying the Random Forest Model as a Bento Service
 
 In this final step of the demo, we will deploy the trained Random Forest model using BentoML. 
 This will allow us to serve the model as an API endpoint for making predictions.
