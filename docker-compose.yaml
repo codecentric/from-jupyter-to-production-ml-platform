@@ -56,6 +56,7 @@ services:
       - DEFAULT_WORKSPACE=/workspace
       - MYSQL_FEAST_USER=${MYSQL_FEAST_USER}
       - MYSQL_FEAST_PASSWORD=${MYSQL_FEAST_PASSWORD}
+      - PYTHONWARNINGS="ignore::DeprecationWarning"
     volumes:
       - ./:/workspace
     healthcheck:

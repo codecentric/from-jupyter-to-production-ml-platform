@@ -1,0 +1,33 @@
+project: titanicsurvivors
+# By default, the registry is a file (but can be turned into a more scalable SQL-backed registry)
+# The provider primarily specifies default offline / online stores & storing the registry in a given cloud
+provider: local
+entity_key_serialization_version: 2
+# By default, no_auth for authentication and authorization, other possible values kubernetes and oidc. Refer the documentation for more details.
+auth:
+    type: no_auth
+
+online_store:
+    type: postgres
+    host: localhost
+    port: 5432
+    database: feast
+    user: feast
+    password: feast_password
+    vector_enabled: false
+    vector_len: 512
+offline_store:
+  type: postgres
+  host: localhost
+  port: 5432
+  database: feast
+  user: feast
+  password: feast_password
+
+registry:
+    registry_type: sql
+    path: postgresql+psycopg://feast:feast_password@localhost:5432/feast
+    cache_ttl_seconds: 60
+    sqlalchemy_config_kwargs:
+        echo: false
+        pool_pre_ping: true
