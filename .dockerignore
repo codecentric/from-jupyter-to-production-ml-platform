@@ -1,0 +1,4 @@
+.venv
+Dockerfile
+README.md
+.pre-commit-config.yaml
