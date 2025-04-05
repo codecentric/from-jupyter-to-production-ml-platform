@@ -21,8 +21,29 @@ def train_xgb_classifier(
     objective: str = "binary:logistic",
     eval_metric: str = "error",
 ) -> Annotated[
-    xgb.Booster, f"<model_artifact_name>_{os.getenv('GROUP_NAME', 'Default')}"
+    xgb.Booster, f"xgb_model_{os.getenv('GROUP_NAME', 'Default')}"
 ]:  # ... Please add the name of the trained model artifact.
     # ... Please enable mlflow autologging for the training process.
+    mlflow.autolog()
 
     # ... Please add the provided training script.
+    dtrain = xgb.DMatrix(inputs, label=targets)
+    params = {
+        "max_depth": max_depth,
+        "eta": eta,
+        "objective": objective,
+        "eval_metric": eval_metric,
+    }
+    cv_results = xgb.cv(
+        params=params,
+        dtrain=dtrain,
+        num_boost_round=1000,
+        nfold=5,
+        metrics=["error"],
+        early_stopping_rounds=10,
+        stratified=True,
+    )
+
+    best_iteration = cv_results["test-error-mean"].idxmin()
+    best_model = xgb.train(params, dtrain, num_boost_round=best_iteration + 1)
+    return best_model
