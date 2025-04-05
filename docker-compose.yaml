@@ -2,12 +2,12 @@
 services:
   code-server:
     image: codecentric/from-jupyter-to-production-code-server
+    privileged: true
     environment:
       - PUID=0
       - PGID=0
       - TZ=Etc/UTC
       - DEFAULT_WORKSPACE=/workspace
-      #- DOCKER_HOST=tcp://localhost:2375
     volumes:
       - ./src:/workspace/src
       - ./pyproject.toml:/workspace/pyproject.toml
@@ -16,7 +16,6 @@ services:
       - ./uv.lock:/workspace/uv.lock
       - ./Dockerfile:/workspace/Dockerfile
       - ./README.md:/workspace/README.md
-      - /var/run/docker.sock:/var/run/docker.sock # Map the host's Docker socket
     stdin_open: true # Keep stdin open for interactive use
     tty: true        # Allocate a pseudo-TTY for the container
     healthcheck:

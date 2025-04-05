@@ -48,10 +48,6 @@ graph TD
 Before you begin, ensure you have Docker installed if you choose to use the Code Server. 
 If you prefer to use your own IDE, ensure you have uv installed for dependency management.
 
-> [!WARNING]  
-> If Docker is not installed via the WSL under Windows, a separate IDE must be used and uv installed. If this is not 
-> possible, please take on the role of Data Scientist.
-
 ### 🛠️ Installation
 To start the Code Server service, run the following command:
 
@@ -65,7 +61,7 @@ Open the Code Server and install the Python extension. This extension provides s
 and other essential features for your Python development. 
 You can typically find the extension marketplace in the sidebar of the Code Server interface.
 
-#### Using UV for Dependency Management (For participants using their own IDE)
+#### Using UV for Dependency Management (If you use your own IDE)
 We will utilize uv, a package and dependency manager that simplifies the creation of Python environments. 
 It helps manage packages and dependencies in a streamlined manner. 
 
@@ -77,10 +73,11 @@ necessary dependencies, run the following command:
 
 ```bash
 uv sync --all-extras
+uv pip install -e . 
 ```
 This command will set up the virtual environment based on the project requirements.
 
-#### Activating the Virtual Environment
+#### Activating the Virtual Environment (If you use your own IDE)
 After running the uv sync command, activate the virtual environment using the following command:
 ```bash
 source .venv/bin/activate
@@ -357,9 +354,6 @@ The name of the artifact must appear in the method call ` f“<artifact_name>_{o
 
 The next small step is to give the bento you are creating a model name. This name must match the model name from the service.
 
-There are now two ways to complete the deployment. You can start a server in progress that provides a corresponding 
-HTTP interface, or you can have the pipeline create a Docker image that you can then use tso start a server.
-
 The following code creates an InProcess Server that provides an endpoint that you can use for inferences. 
 
 ```python
@@ -373,25 +367,6 @@ bentoml_model_deployer_step(
     )
 ```
 
-To obtain a Docker image at the end of the deployment pipeline, your deployment step must look like this. 
-
-```python
-from zenml.integrations.bentoml.steps import (
-    bentoml_model_deployer_step,
-)
-import titanicsurvivors
-
-bentoml_model_deployer_step(
-    bento=bento,
-    model_name="<model_name>",  # Name of the model
-    port=3001,  # Port to be used by the http server
-    deployment_type="container",
-    image="mlopsworkshop/titanicsurvivors",
-    image_tag=titanicsurvivors.__version__,
-    platform="linux/amd64",
-)
-```
-
 ## 🧑‍🧑‍🧒 And now all together
 Now let's combine your work and see if everything worked. 
 First, the data scientist needs to become active. 
@@ -402,9 +377,6 @@ Please enter the following command in your terminal to activate the stack that y
 zenml stack set azure_<group_name>
 ```
 Now please run all pipelines again. 
-
-> [!NOTE]
-> Please note that this does not work if you are using Windows without WSL and are working in the code server. 
 
 ```bash
 python src/titanicsurvivors/pipelines/prepare_raw_data.py
@@ -422,7 +394,7 @@ During this time, familiarize yourself with the ZenML dashboard and the results 
 
 As soon as all pipelines have been run, the Machine Learning Engineer comes into play. 
 
-First you have to create another stack to un the deployment pipeline. Please execute the following code (change your group name). 
+First you have to create another stack to run the deployment pipeline. Please execute the following code (change your group name). 
 
 ```bash
 zenml stack register -o default -a azure_store_<group_name> -d bentoml_deployer_<group_name> local_deploy_<group_name>
@@ -435,12 +407,6 @@ of the training pipeline.
 
 ```bash
 python src/titanicsurvivors/pipelines/deploy/deploy_xgboost.py
-```
-
-If the deployment pipeline creates a Docker image, the server can be started with the following command, for example. 
-
-```bash
-docker run --name mlops-demo-deployment -p 3000:3000 mlopsworkshop/titanicsurvivors
 ```
 
 ### Testing the Deployment

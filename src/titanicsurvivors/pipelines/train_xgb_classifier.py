@@ -1,5 +1,4 @@
-    settings={"docker": docker_settings, "experiment_tracker": mlflow_settings},
-    name=f"Train Model ({os.getenv('GROUP_NAME', 'Default')})",
+
     
 import os
 
