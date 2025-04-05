@@ -1,3 +1,6 @@
+    settings={"docker": docker_settings, "experiment_tracker": mlflow_settings},
+    name=f"Train Model ({os.getenv('GROUP_NAME', 'Default')})",
+    
 import os
 
 from dotenv import load_dotenv
@@ -26,7 +29,7 @@ def train_xgb():
 
     # ... Please add the name of the artifact, that we want to use here
     data_w_features = client.get_artifact_version(
-        name_id_or_prefix=f"<artifact_name>_{os.getenv('GROUP_NAME', 'Default')}"
+        name_id_or_prefix=f"combined_features_{os.getenv('GROUP_NAME', 'Default')}"
     )
 
     encoded_data = feature_transformation(data_w_features=data_w_features)
