@@ -26,3 +26,4 @@ def train_xgb_classifier(
     # ... Please enable mlflow autologging for the training process.
 
     # ... Please add the provided training script.
+    raise NotImplementedError("Complete the training step as described in the exercise.")
