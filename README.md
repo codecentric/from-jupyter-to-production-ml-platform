@@ -1,4 +1,4 @@
-# 🚀 ZenML Machine Learning Platform Demo on Azure
+# 🚀 ZenML Machine Learning Platform Demo on GCP
 Welcome to our demo setup for a Machine Learning Platform built with ZenML🧘.
 In this exercise, we will tackle the classic Titanic problem, where our goal is to predict the
 survival of passengers aboard the Titanic based on various features such as age, sex, ticket class,
@@ -7,7 +7,7 @@ and the clear binary classification task it presents.
 
 Throughout this guide, we will walk through the entire machine learning pipeline from data preparation and feature engineering to model training with
 xgboost. Additionally, we will utilize MLflow for experiment tracking and managing our model registry to keep track of our model versions and metrics.
-Finally, we will deploy the trained model with BentoML.
+Finally, we will deploy a model-serving pipeline to Google Cloud Run with ZenML's native GCP deployer.
 The provided components and services will support every stage of the lifecycle, ensuring a
 comprehensive understanding of how to build and deploy a machine learning model using ZenML.
 
@@ -19,30 +19,30 @@ skills in machine learning, experiment tracking, feature management, and model d
 build with ZenML.
 
 ## 🛠️ Setup / Stack Description
-In this exercise, we utilize a setup provided on Azure, encompassing various components. 
+In this exercise, we utilize a setup provided on Google Cloud, encompassing various components.
 Here is an overview of the components used:
 
 ```mermaid
 graph TD
-    subgraph Azure
-        A[AKS Cluster] --> B[ZenML Server]
+    subgraph GCP
+        A[Vertex AI] --> B[ZenML Server]
         A --> C[MLflow Server]
-        A --> D[BentoML Model Deployer]
+        A --> D[Cloud Run Model Deployer]
     
-    E[Azure Blob Storage] -.-> B
-    F[Azure Container Registry] -.-> B
+    E[Google Cloud Storage] -.-> B
+    F[Artifact Registry] -.-> B
     B --> G[ZenML Artifacts]
     G -.->E
     C --> H[MLflow Experiments]
     end
     D --> I[Model Deployment]
 ```
-* AKS Cluster (Azure Kubernetes Service): The central orchestrator, where the ZenML Server and the MLflow Server are operated.
+ * Vertex AI: The native GCP orchestrator for running ZenML pipelines remotely.
 * ZenML Server: The core of our ML orchestration and management platform.
 * MLflow Server: For logging experiments and managing the model registry.
-* BentoML Model Deployer: Used for the deployment of the trained models.
-* Azure Blob Storage: Used as the ZenML Artifact Store and for the Mlflow artifacts.
-* Azure Container Registry: Used as the Container Registry for ZenML.
+ * GCP Cloud Run Model Deployer: Deploys ZenML pipelines as HTTP services.
+ * Google Cloud Storage: Used as the ZenML Artifact Store.
+ * Artifact Registry: Used as the Container Registry for ZenML.
 
 ## 🚧 Environment Setup
 Before you begin, ensure you have Docker installed if you choose to use the Code Server. 
@@ -226,39 +226,57 @@ Ensure you have access to the ZenML server and establish a connection. This step
 ZenML Server and configuring stack components.
 
 #### Registering the Orchestrator
-Register the Azure Kubernetes Service (AKS) as the Orchestrator. 
-This service will coordinate and manage the execution of your machine learning pipelines.
+Register Vertex AI as the orchestrator. This service coordinates and manages the execution of your machine learning pipelines.
 
 ```bash
-zenml orchestrator register azure_kubernetes_<group_name>  --flavor kubernetes             
+zenml integration install gcp -y
+zenml orchestrator register vertex_orchestrator_<group_name> \
+  --flavor=vertex \
+  --project=<GCP_PROJECT_ID> \
+  --location=<GCP_REGION> \
+  --synchronous=true \
+  --workload_service_account=<PIPELINE_SERVICE_ACCOUNT_EMAIL>
 ```
 
 ```bash
-zenml orchestrator connect azure_kubernetes_<group_name>  --connector azure-service-principal
+zenml orchestrator connect vertex_orchestrator_<group_name> \
+  --connector gcp-service-account
 ```
+
+The connector authenticates the ZenML client that submits the job. The workload service account runs the Vertex AI steps, so it must be able to access the GCS artifacts and pull images from Artifact Registry.
+
+#### Containerization And Build Reuse
+
+Vertex AI still needs a container image containing Python, ZenML, and the project dependencies. The source code does not replace the runtime image. This project uses a small custom Dockerfile because the application is a `src`-layout Python package: the package root, `pyproject.toml`, and sibling `steps` modules must be present together in the image.
+
+ZenML still reuses matching builds automatically. The Dockerfile copies dependency metadata before source files, so dependency layers remain cached. A new build is required when dependencies or Docker settings change. Keep the working tree clean when relying on build reuse.
 
 #### Registering the Container Registry
-Register the Azure Container Registry to manage Docker images. This registry will store and facilitate the efficient 
-use of Docker images required for pipeline steps if using a remote orchestrator like kubernetes.
+Register Artifact Registry to store the Docker images required by the remote Vertex AI orchestrator.
 
 ```bash
-zenml container-registry register azure_container_registry_<group_name> -f azure --uri=mlopswszenmlcontainerregistry.azurecr.io
+zenml container-registry register gcp_container_registry_<group_name> \
+  -f gcp \
+  --uri=<GCP_REGION>-docker.pkg.dev/<GCP_PROJECT_ID>/<ARTIFACT_REGISTRY_REPOSITORY>
 ```
 
 ```bash
-zenml container-registry connect azure_container_registry_<group_name> --connector azure-service-principal
+zenml container-registry connect gcp_container_registry_<group_name> \
+  --connector gcp-service-account
 ```
 
 ### Registering the Artifact Store
-Register the Azure Blob Storage as the Artifact Store. This storage will handle all artifacts produced during pipeline 
-runs, such as datasets, models, and logs.
+Register the GCS bucket as the Artifact Store. This storage handles all artifacts produced during pipeline runs.
 
 ```bash
-zenml artifact-store register azure_store_<group_name> -f azure --path=az://mlopsws-zenmlartifactstore 
+zenml artifact-store register gcs_store_<group_name> \
+  -f gcp \
+  --path=gs://<GCS_ARTIFACT_BUCKET>
 ```
 
 ```bash
-zenml artifact-store connect azure_store_<group_name> --connector azure-service-principal
+zenml artifact-store connect gcs_store_<group_name> \
+  --connector gcp-service-account
 ```
 
 #### Registering the MLflow Experiment Tracker
@@ -282,7 +300,12 @@ Combine the registered components into a stack. This stack will define the infra
 and managing machine learning workflows.
 
 ```bash
-zenml stack register -a azure_store_<group_name> -o default -c azure_container_registry_<group_name> -e mlflow_<group_name> azure_<group_name>
+zenml stack register \
+  -a gcs_store_<group_name> \
+  -o vertex_orchestrator_<group_name> \
+  -c gcp_container_registry_<group_name> \
+  -e mlflow_<group_name> \
+  gcp_<group_name>
 
 ```
 #### Setting the Active ZenML Stack
@@ -290,7 +313,7 @@ Activating the stack is essential to ensure that the components registered are c
 for use in your ZenML pipelines.
 
 ```bash
-zenml stack set azure_<group_name>
+zenml stack set gcp_<group_name>
 ```
 
 To check if everything looks good please run the following command. 
@@ -300,71 +323,30 @@ zenml stack describe
 ```
 
 ### Role: ML Engineer
-As an ML Engineer, your responsibility is to create a pipeline to deploy the trained model using BentoML. 
-Deployment ensures that the trained model is accessible for inference and can be integrated into production systems.
+As an ML Engineer, your responsibility is to deploy the model-serving pipeline with ZenML's native GCP Cloud Run deployer.
+Cloud Run exposes the deployed pipeline as an HTTP service and scales it independently of the Vertex AI training stack.
 
-#### Register Bento Model Deployer
-Please execute the following command to create a model deployer stack component (change group name).
+#### Register the GCP Cloud Run Model Deployer
+Please execute the following command to create the model deployer stack component (change group name).
 
 ```bash
-zenml model-deployer register bentoml_deployer_<group_name> --flavor=bentoml
+zenml deployer register gcp_deployer_<group_name> \
+  --flavor=gcp \
+  --project=<GCP_PROJECT_ID> \
+  --location=<GCP_REGION> \
+  --connector=gcp-service-account
 ```
 
-#### Creating the Bento Service
-First, a service must be created that will be used by Bento to process the requests for a prediction. 
-This service must be stored in a Python file located right next to the deployment pipeline. 
-Please create the file `src/titanicsurvivors/pipelines/deploy/service.py`. 
+#### Deploy the pipeline to Cloud Run
+The GCP deployer packages this ZenML pipeline and exposes it as an HTTP service. No separate serving application is required.
+The model artifact lookup in `src/titanicsurvivors/pipelines/deploy/deploy_xgboost.py` must match the artifact name produced by the training exercise.
 
-The content of the file must be as follows. Make sure that the name of the model to be loaded matches the model name 
-that you define in the Bento deployment. 
+Create a deployment stack with the same GCS artifact store and the GCP deployer:
 
-```python
-from typing import List
-
-import bentoml
-import numpy as np
-import pandas as pd
-import xgboost as xgb
-
-
-@bentoml.service(
-    name="TitanicService",
-)
-class TitanicService:
-    def __init__(self):
-        self.model = bentoml.xgboost.load_model("titanic-classifier")
-
-    @bentoml.api()
-    async def predict(self, inputs: List[dict]) -> List[str]:
-        dinput = xgb.DMatrix(pd.DataFrame(inputs))
-        output_tensor = self.model.predict(dinput)
-        print(output_tensor)
-
-        return np.where(
-            np.array([round(output) for output in output_tensor]) == 1,
-            "Survived",
-            "Died",
-        ).tolist()
-```
-#### Create the deployment pipeline 
-Now we need to create the deployment pipeline. This is located in the file 
-`src/titanicsurvivors/pipelines/deploy/deploy_xgboost.py`. First get the current model artifact. 
-You can obtain the name of the artifact from your data scientist.
-The name of the artifact must appear in the method call ` f“<artifact_name>_{os.getenv(‘GROUP_NAME’, ‘Default’)}”`
-
-The next small step is to give the bento you are creating a model name. This name must match the model name from the service.
-
-The following code creates an InProcess Server that provides an endpoint that you can use for inferences. 
-
-```python
-from zenml.integrations.bentoml.steps import (
-    bentoml_model_deployer_step,
-)
-bentoml_model_deployer_step(
-        bento=bento,
-        model_name="<model_name>",  # Name of the model
-        port=3001,  # Port to be used by the http server
-    )
+```bash
+zenml stack register -a gcs_store_<group_name> -d gcp_deployer_<group_name> cloud_run_<group_name>
+zenml stack set cloud_run_<group_name>
+zenml pipeline deploy --name titanic_model_<group_name> titanicsurvivors.pipelines.deploy.deploy_xgboost.model_deployment_pipeline
 ```
 
 ## 🧑‍🧑‍🧒 And now all together
@@ -374,7 +356,7 @@ First, the data scientist needs to become active.
 Please enter the following command in your terminal to activate the stack that your platform engineer created for you. 
 
 ```bash
-zenml stack set azure_<group_name>
+zenml stack set gcp_<group_name>
 ```
 Now please run all pipelines again. 
 
@@ -389,29 +371,39 @@ python src/titanicsurvivors/pipelines/feature_engineering.py
 ```bash
 python src/titanicsurvivors/pipelines/train_xgb_classifier.py
 ```
-Since everything now runs via Docker and remote execution, these steps will take some time. 
+Since everything now runs via Docker and remote execution, these steps will take some time.
 During this time, familiarize yourself with the ZenML dashboard and the results in MLflow.
+
+> [!IMPORTANT]
+> Run each pipeline from one terminal and wait until ZenML reports that the Vertex AI job completed. Do not start the same pipeline again while the first command is waiting. ZenML creates its run record before submitting the Vertex job; starting a second command can create a second ZenML run while the first Vertex job is still running.
 
 As soon as all pipelines have been run, the Machine Learning Engineer comes into play. 
 
-First you have to create another stack to run the deployment pipeline. Please execute the following code (change your group name). 
+Deploy the model-serving pipeline to Cloud Run. Make sure that the model artifact name matches the training pipeline.
 
 ```bash
-zenml stack register -o default -a azure_store_<group_name> -d bentoml_deployer_<group_name> local_deploy_<group_name>
-
-zenml stack set local_deploy_<group_name>
-```
-
-Please run the deployment pipeline yourself. Make sure that the name of the model artifact matches that 
-of the training pipeline.
-
-```bash
-python src/titanicsurvivors/pipelines/deploy/deploy_xgboost.py
+zenml stack set cloud_run_<group_name>
+zenml pipeline deploy --name titanic_model_<group_name> titanicsurvivors.pipelines.deploy.deploy_xgboost.model_deployment_pipeline
 ```
 
 ### Testing the Deployment
-Access the Bento service in your web browser at http://localhost:3000 and test the Predict API using the provided JSON data. 
-This will verify that the model is correctly deployed and capable of making predictions.
+List and inspect the deployment schema before invoking it:
+
+```bash
+zenml deployment list
+zenml deployment describe titanic_model_<group_name> --show-schema
+zenml deployment invoke titanic_model_<group_name> --features='<JSON_FEATURE_OBJECT>'
+```
+
+The same request can be sent directly to the endpoint shown by `zenml deployment describe`:
+
+```bash
+curl -X POST <DEPLOYMENT_URL>/invoke \
+  -H 'Content-Type: application/json' \
+  -d '{"parameters":{"features":<JSON_FEATURE_OBJECT>}}'
+```
+
+The feature object must contain the encoded columns produced by the feature-engineering pipeline. The default example is:
 ```json
 {
    "Age": 2.0,
@@ -442,5 +434,5 @@ This will verify that the model is correctly deployed and capable of making pred
 }
 ```
 
-Congratulations! You have successfully completed the tasks for your respective roles, working together to build 
-and deploy a machine learning model using ZenML on Azure. 🎉
+Congratulations! You have successfully completed the tasks for your respective roles, working together to build
+and deploy a machine learning model using ZenML on GCP.

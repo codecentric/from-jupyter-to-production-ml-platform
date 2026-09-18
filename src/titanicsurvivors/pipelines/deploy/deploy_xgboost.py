@@ -3,54 +3,59 @@ import os
 from dotenv import load_dotenv
 from zenml import pipeline
 from zenml.client import Client
-from zenml.integrations.bentoml.steps import (
-    bento_builder_step,
-    bentoml_model_deployer_step,
-)
+from zenml.config import ResourceSettings
+from zenml.integrations.gcp.flavors.gcp_deployer_flavor import GCPDeployerSettings
 
 from titanicsurvivors.models import titanic_xgboost
+from titanicsurvivors.steps.prediction import predict_survival
 
 
 load_dotenv()
 
+DEFAULT_FEATURES = {
+    "Age": 2.0,
+    "Deck_0": 1.0,
+    "Deck_1": 0.0,
+    "Deck_2": 0.0,
+    "Deck_3": 0.0,
+    "Embarked_0": 1.0,
+    "Embarked_1": 0.0,
+    "Embarked_2": 0.0,
+    "Family_Size_Grouped_0": 0.0,
+    "Family_Size_Grouped_1": 0.0,
+    "Family_Size_Grouped_2": 1.0,
+    "Fare": 2.0,
+    "Parch": 1.0,
+    "Pclass_1": 1.0,
+    "Pclass_2": 0.0,
+    "Pclass_3": 0.0,
+    "Sex_0": 1.0,
+    "Sex_1": 0.0,
+    "SibSp": 0.0,
+    "Ticket_Frequency": 2.0,
+    "Title_0": 1.0,
+    "Title_1": 0.0,
+    "Title_2": 0.0,
+    "Title_3": 0.0,
+    "is_married": 1.0,
+}
 
-@pipeline(model=titanic_xgboost, enable_cache=False)
-def bento_deployment_pipeline():
+
+@pipeline(
+    model=titanic_xgboost,
+    enable_cache=False,
+    settings={
+        "deployer": GCPDeployerSettings(use_secret_manager=False),
+        "resources": ResourceSettings(cpu_count=1, memory="2GiB"),
+    },
+)
+def model_deployment_pipeline(features: dict[str, float] = DEFAULT_FEATURES) -> str:
     model_artifact = Client().get_artifact_version(
         f"xgb_model_{os.getenv('GROUP_NAME', 'Default')}"
-    )  # ... Change the name of the model artifact. Exchange with a Datat Scientist what name was given to the model artifact.
-
-    bento = bento_builder_step(
-        model=model_artifact,
-        model_name="titanic-classifier",  # ... Add a model name. This must match the one in the service.
-        model_type="xgboost",
-        service="service.py:TitanicService",
-        labels={
-            "framework": "xgboost",
-            "dataset": "titanic",
-        },
-        exclude=["data"],
-        python={
-            "packages": ["zenml", "xgboost", "pandas", "scikit-learn"],
-        },
     )
-
-    # bentoml_model_deployer_step(
-    #     bento=bento,
-    #     model_name="titanic-classifier",  # Name of the model
-    #     port=3001,  # Port to be used by the http server
-    #     deployment_type="container",
-    #     image="mlopsworkshop/titanicsurvivors",
-    #     image_tag=titanicsurvivors.__version__,
-    #     platform="linux/amd64",
-    # )
-
-    deployed_model = bentoml_model_deployer_step(
-        bento=bento,
-        model_name="titanic-classifier",  # Name of the model
-        port=3001,  # Port to be used by the http server
-    )
+    prediction = predict_survival(model=model_artifact, features=features)
+    return prediction
 
 
 if __name__ == "__main__":
-    bento_deployment_pipeline()
+    model_deployment_pipeline()

@@ -4,35 +4,38 @@ version = "0.1.0"
 description = "Example project for the creation of a machine learning platform with ZenML.This project creates a model to predict would survive the titanic disaster."
 requires-python = ">=3.12"
 dependencies = [
-    "numpy<2.0",
-    "pandas>=2.2.3",
-    "pyarrow>=19.0.1",
-    "python-dotenv>=1.1.0",
-    "xgboost>=3.0.0",
-    "zenml>=0.80.1",
+    "numpy>=2.3.3",
+    "pandas>=2.3.2",
+    "pyarrow>=21.0.0",
+    "python-dotenv>=1.1.1",
+    "xgboost>=3.0.5",
+    "zenml[connectors-gcp]==0.96.4",
+    # ZenML 0.96.4 requires this compatible OpenTelemetry API/SDK set; without pins, newer API versions can make ZenML's artifact log exporter abstract and crash Vertex workers.
+    "opentelemetry-api==1.43.0",
+    "opentelemetry-sdk==1.43.0",
+    "opentelemetry-semantic-conventions==0.64b0",
+    "opentelemetry-instrumentation-logging==0.64b0",
 ]
 
 [project.optional-dependencies]
-k8s = [
-    "kubernetes>=32.0.1",
-]
-azure = [
-    "adlfs>=2024.12.0",
-    "azure-identity>=1.21.0",
-    "azure-keyvault-keys>=4.10.0",
-    "azure-keyvault-secrets>=4.9.0",
-    "azure-mgmt-containerservice>=20.0.0",
-    "azure-storage-blob>=12.17.0",
-    "azureml-core>=1.56.0",
-    "azure-ai-ml>=1.23.1"
+gcp = [
+    "gcsfs>=2024.12.0,<=2024.12.0,!=2025.5.0,!=2025.5.0.post1",
+    "google-cloud-aiplatform>=1.165.1",
+    "google-cloud-artifact-registry>=1.19.0",
+    "google-cloud-build>=3.39.0",
+    "google-cloud-container>=2.66.0",
+    "google-cloud-logging>=3.16.3",
+    "google-cloud-pipeline-components>=2.22.0",
+    "google-cloud-run>=0.16.1",
+    "google-cloud-secret-manager>=2.30.0",
+    "google-cloud-storage>=3.4.1",
+    "kfp>=2.6.0",
+    "urllib3<2.6.0",
 ]
 mlflow = [
-    "mlflow>=2.21.3",
-    "pydantic>=2.8.2",
+    "mlflow>=3.3.2",
+    "pydantic>=2.11.9",
     "python-rapidjson>=1.20",
-]
-bento = [
-    "bentoml>=1.4.7",
 ]
 
 [tool.uv]

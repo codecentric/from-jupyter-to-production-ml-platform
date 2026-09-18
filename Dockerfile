@@ -1,13 +1,12 @@
 FROM --platform=linux/amd64 zenmldocker/zenml:py3.12
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Copy the project into the image
-ADD . /app
-
 WORKDIR /app
+COPY pyproject.toml uv.lock ./
+RUN uv venv && uv sync --frozen --all-extras --no-install-project
 
-RUN uv venv
-RUN uv sync --frozen --extra k8s --extra azure --extra mlflow --extra bento
-RUN pip install -e .
+COPY src ./src
+COPY data ./data
+RUN uv pip install --python /app/.venv/bin/python --no-deps -e .
 
 ENV PATH="/app/.venv/bin:$PATH"
