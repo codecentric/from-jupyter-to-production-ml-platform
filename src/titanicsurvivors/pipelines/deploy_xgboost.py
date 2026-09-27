@@ -8,6 +8,7 @@ from zenml.integrations.gcp.flavors.gcp_deployer_flavor import GCPDeployerSettin
 
 from titanicsurvivors.models import titanic_xgboost
 from titanicsurvivors.steps.prediction import predict_survival
+from titanicsurvivors.settings import docker_settings
 
 
 load_dotenv()
@@ -45,19 +46,20 @@ DEFAULT_FEATURES = {
     model=titanic_xgboost,
     enable_cache=False,
     settings={
-        "deployer": GCPDeployerSettings(use_secret_manager=False),
+        "docker": docker_settings,
+        "deployer": GCPDeployerSettings(
+            use_secret_manager=False,
+            allow_unauthenticated=False,
+        ),
         "resources": ResourceSettings(cpu_count=1, memory="2GiB"),
     },
 )
 def model_deployment_pipeline(features: dict[str, float] = DEFAULT_FEATURES) -> str:
     model_artifact = Client().get_artifact_version(
-        f"<model_artifact>_{os.getenv('GROUP_NAME', 'Default')}"
-    )  # TODO: Use the model artifact name produced by the training pipeline.
-
-    # TODO: Pass the artifact and request features to the prediction step.
-    # TODO: Return the prediction so Cloud Run exposes it in the response.
-    _ = (model_artifact, features, predict_survival)
-    raise NotImplementedError("Complete the model deployment pipeline.")
+        f"xgb_model_{os.getenv('GROUP_NAME', 'Default')}"
+    )
+    prediction = predict_survival(model=model_artifact, features=features)
+    return prediction
 
 
 if __name__ == "__main__":

@@ -11,7 +11,6 @@ def predict_survival(
     features: dict[str, float],
 ) -> Annotated[str, "prediction"]:
     """Return the Titanic survival prediction for one encoded passenger."""
-    # TODO: Convert features to an XGBoost DMatrix and calculate the prediction.
-    # TODO: Return "Survived" or "Died" based on the model probability.
-    _ = (model, features, pd, xgb)
-    raise NotImplementedError("Implement the prediction step.")
+    inputs = xgb.DMatrix(pd.DataFrame([features]))
+    probability = float(model.predict(inputs)[0])
+    return "Survived" if probability >= 0.5 else "Died"

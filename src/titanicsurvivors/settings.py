@@ -12,6 +12,8 @@ load_dotenv()
 docker_settings = DockerSettings(
     build_context_root=".",
     dockerfile="./Dockerfile",
+    prevent_build_reuse=os.getenv("ZENML_PREVENT_BUILD_REUSE", "false").lower()
+    in {"1", "true", "yes", "on"},
     allow_including_files_in_images=False,
     allow_download_from_code_repository=False,
     allow_download_from_artifact_store=False,
