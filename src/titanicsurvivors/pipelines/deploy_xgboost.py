@@ -8,6 +8,7 @@ from zenml.integrations.gcp.flavors.gcp_deployer_flavor import GCPDeployerSettin
 
 from titanicsurvivors.models import titanic_xgboost
 from titanicsurvivors.steps.prediction import predict_survival
+from titanicsurvivors.settings import docker_settings
 
 
 load_dotenv()
@@ -45,7 +46,11 @@ DEFAULT_FEATURES = {
     model=titanic_xgboost,
     enable_cache=False,
     settings={
-        "deployer": GCPDeployerSettings(use_secret_manager=False),
+        "docker": docker_settings,
+        "deployer": GCPDeployerSettings(
+            use_secret_manager=False,
+            allow_unauthenticated=False,
+        ),
         "resources": ResourceSettings(cpu_count=1, memory="2GiB"),
     },
 )

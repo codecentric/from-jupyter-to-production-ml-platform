@@ -265,6 +265,43 @@ zenml container-registry connect gcp_container_registry_<group_name> \
   --connector gcp-service-account
 ```
 
+#### Registering the GCP Image Builder
+Use Google Cloud Build to build the pipeline image in GCP instead of building
+the image on the local machine. This is especially useful because the image
+contains the GCP, MLflow, and Python dependencies and can be several
+gigabytes. The image builder pushes the resulting image to the GCP container
+registry above.
+
+The GCP image builder requires a GCS artifact store, a GCP container registry,
+and a service account connector with permission to run Cloud Build and push to
+Artifact Registry. Install the integration if it is not already installed:
+
+```bash
+zenml integration install gcp -y
+```
+
+Register the image builder in the same GCP project and region:
+
+```bash
+zenml image-builder register gcp_builder_<group_name> \
+  --flavor=gcp \
+  --project=<GCP_PROJECT_ID> \
+  --cloud_builder_image=gcr.io/cloud-builders/docker \
+  --location=<GCP_REGION>
+```
+
+Connect it to the GCP service-account connector:
+
+```bash
+zenml image-builder connect gcp_builder_<group_name> \
+  --connector=gcp-service-account
+```
+
+The Cloud Build service account must be able to read the build context from
+the GCS artifact store and push images to Artifact Registry. It generally
+needs `roles/cloudbuild.builds.editor`, `roles/artifactregistry.writer`, and
+the required storage access on the artifact bucket.
+
 ### Registering the Artifact Store
 Register the GCS bucket as the Artifact Store. This storage handles all artifacts produced during pipeline runs.
 
@@ -305,6 +342,7 @@ zenml stack register \
   -o vertex_orchestrator_<group_name> \
   -c gcp_container_registry_<group_name> \
   -e mlflow_<group_name> \
+  -i gcp_builder_<group_name> \
   gcp_<group_name>
 
 ```
@@ -339,14 +377,26 @@ zenml deployer register gcp_deployer_<group_name> \
 
 #### Deploy the pipeline to Cloud Run
 The GCP deployer packages this ZenML pipeline and exposes it as an HTTP service. No separate serving application is required.
-The model artifact lookup in `src/titanicsurvivors/pipelines/deploy/deploy_xgboost.py` must match the artifact name produced by the training exercise.
+The model artifact lookup in `src/titanicsurvivors/pipelines/deploy_xgboost.py` must match the artifact name produced by the training exercise.
 
-Create a deployment stack with the same GCS artifact store and the GCP deployer:
+This project is deployed in an organization where Cloud Run services must
+require IAM authentication. The deployment pipeline therefore sets
+`allow_unauthenticated=False` in `GCPDeployerSettings`. Do not change this to
+`True` unless the organization policy is changed by an administrator.
+
+Create a deployment stack with the same GCS artifact store, container registry,
+image builder, and GCP deployer. The GCP deployer requires the image builder
+and registry even though Cloud Run itself only pulls the final image:
 
 ```bash
-zenml stack register -a gcs_store_<group_name> -d gcp_deployer_<group_name> cloud_run_<group_name>
+zenml stack register \
+  -a gcs_store_<group_name> \
+  -c gcp_container_registry_<group_name> \
+  -i gcp_builder_<group_name> \
+  -d gcp_deployer_<group_name> \
+  cloud_run_<group_name>
 zenml stack set cloud_run_<group_name>
-zenml pipeline deploy --name titanic_model_<group_name> titanicsurvivors.pipelines.deploy.deploy_xgboost.model_deployment_pipeline
+zenml pipeline deploy --name titanic_model_<group_name> --update titanicsurvivors.pipelines.deploy_xgboost.model_deployment_pipeline
 ```
 
 ## 🧑‍🧑‍🧒 And now all together
@@ -383,7 +433,7 @@ Deploy the model-serving pipeline to Cloud Run. Make sure that the model artifac
 
 ```bash
 zenml stack set cloud_run_<group_name>
-zenml pipeline deploy --name titanic_model_<group_name> titanicsurvivors.pipelines.deploy.deploy_xgboost.model_deployment_pipeline
+zenml pipeline deploy --name titanic_model_<group_name> --update titanicsurvivors.pipelines.deploy_xgboost.model_deployment_pipeline
 ```
 
 ### Testing the Deployment
@@ -395,10 +445,24 @@ zenml deployment describe titanic_model_<group_name> --show-schema
 zenml deployment invoke titanic_model_<group_name> --features='<JSON_FEATURE_OBJECT>'
 ```
 
+Because the Cloud Run service is private, the identity used to invoke it must
+have the `roles/run.invoker` role on the service. The ZenML CLI invocation
+uses the authenticated ZenML/GCP context. For a direct HTTP request, obtain a
+Google identity token:
+
+```bash
+TOKEN="$(gcloud auth print-identity-token)"
+curl -X POST <DEPLOYMENT_URL>/invoke \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H 'Content-Type: application/json' \
+  -d '{"parameters":{"features":<JSON_FEATURE_OBJECT>}}'
+```
+
 The same request can be sent directly to the endpoint shown by `zenml deployment describe`:
 
 ```bash
 curl -X POST <DEPLOYMENT_URL>/invoke \
+  -H "Authorization: Bearer ${TOKEN}" \
   -H 'Content-Type: application/json' \
   -d '{"parameters":{"features":<JSON_FEATURE_OBJECT>}}'
 ```
@@ -436,3 +500,24 @@ The feature object must contain the encoded columns produced by the feature-engi
 
 Congratulations! You have successfully completed the tasks for your respective roles, working together to build
 and deploy a machine learning model using ZenML on GCP.
+
+### Optional Local Docker Credential Isolation
+
+On macOS, an existing Docker configuration can contain AWS registries and the
+`osxkeychain` credential store. If local Docker orchestration fails with
+`docker-credential-osxkeychain` or asks for credentials for an unrelated AWS
+registry, run the pipeline with an isolated Docker configuration:
+
+```bash
+export DOCKER_CONFIG=/tmp/mlops-gcp-docker-config
+mkdir -p "$DOCKER_CONFIG"
+gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+
+uv run zenml stack set gcp_local_docker_<group_name>
+uv run python src/titanicsurvivors/pipelines/prepare_raw_data.py
+```
+
+This temporary configuration contains only the GCP Artifact Registry
+credential helper and does not modify the existing Docker configuration. The
+same `DOCKER_CONFIG` export must remain in the shell for subsequent local
+Docker pipeline commands.

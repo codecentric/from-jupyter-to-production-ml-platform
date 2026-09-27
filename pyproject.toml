@@ -8,6 +8,7 @@ dependencies = [
     "pandas>=2.3.2",
     "pyarrow>=21.0.0",
     "python-dotenv>=1.1.1",
+    "secure>=0.3.0",
     "xgboost>=3.0.5",
     "zenml[connectors-gcp]==0.96.4",
     # ZenML 0.96.4 requires this compatible OpenTelemetry API/SDK set; without pins, newer API versions can make ZenML's artifact log exporter abstract and crash Vertex workers.
